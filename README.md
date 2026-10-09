@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Study Space — componentized Next.js code
 
-## Getting Started
+This folder contains the source files to copy into your existing Next.js + JavaScript + Tailwind project.
 
-First, run the development server:
+## Copy these files
+
+Copy the `src/components/` folder, `src/lib/study.js`, and replace `src/app/page.js` with the version in this folder. Do not replace your existing `package.json`, `layout.js`, or `globals.css`.
+
+Your project should look like this:
+
+```text
+src/
+  app/
+    page.js
+    layout.js
+    globals.css
+  components/
+    EmptyState.jsx
+    ProgressSection.jsx
+    Sidebar.jsx
+    StatCard.jsx
+    TopicCard.jsx
+    TopicFormModal.jsx
+  lib/
+    study.js
+```
+
+## Run it
+
+From your project folder:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app keeps using the existing LocalStorage key `my-study-space-topics`, so your current topics should remain available.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Included
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Add and edit topics repeatedly
+- Learning notes and “what to revisit” notes
+- Delete topics
+- Category filtering and search
+- Due reviews and spaced-repetition schedule
+- Progress dashboard
+- LocalStorage persistence
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No streaks or daily goals are included.
