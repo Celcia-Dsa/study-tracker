@@ -55,6 +55,21 @@ export default function Home() {
   const [selectedTopicId, setSelectedTopicId] = useState(null);
   const [notice, setNotice] = useState("");
 
+  const [today, setToday] = useState("");
+  const [dateLabel, setDateLabel] = useState("");
+
+  useEffect(() => {
+    setToday(getToday());
+
+    setDateLabel(
+      new Date().toLocaleDateString("en-IN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      }),
+    );
+  }, []);
+
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -85,7 +100,10 @@ export default function Home() {
     }
   }, [topics, loaded]);
 
-  const today = getToday();
+  useEffect(() => {
+    setToday(getToday());
+  }, []);
+
   const dueTopics = useMemo(
     () =>
       topics.filter((topic) => topic.nextReview && topic.nextReview <= today),
@@ -330,11 +348,15 @@ export default function Home() {
     reader.readAsText(file);
   }
 
-  const dateLabel = new Date().toLocaleDateString("en-IN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
+  useEffect(() => {
+    setDateLabel(
+      new Date().toLocaleDateString("en-IN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      }),
+    );
+  }, []);
   return (
     <main className="min-h-screen bg-[#faf9f7] text-[#29283a] md:flex">
       <Sidebar view={view} onNavigate={openView} dueCount={dueTopics.length} />
@@ -732,7 +754,7 @@ function TopicDetail({ topic, onBack, onEdit, onDelete, onUpdate, onReview }) {
           <p className="mb-3 text-[10px] font-bold tracking-[2px] text-[#a19dad]">
             {topic.category.toUpperCase()} · TOPIC DETAIL
           </p>
-          <h1 className="break-words text-3xl font-bold tracking-tight">
+          <h1 className="wrap-break-word text-3xl font-bold tracking-tight">
             {topic.title}
           </h1>
           <p className="mt-3 text-sm text-[#888494]">
